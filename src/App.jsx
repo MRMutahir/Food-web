@@ -1,8 +1,9 @@
-import Containner from "./Components/Containner";
+// import Containner from "./Components/Containner";
+import Main from "./Components/Main";
 function App() {
   return (
     <>
-      <Containner />
+      <Main />
     </>
   );
 }

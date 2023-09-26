@@ -1,6 +1,4 @@
 import { useEffect, useState } from "react";
-
-
 function Navbar() {
   const [inputValue, setInputValue] = useState("");
   const [apiData, setApiData] = useState("...loading");
@@ -17,7 +15,8 @@ function Navbar() {
           console.log("data nh milraha hen abhi ");
         } else {
           setApiData(data.data.recipes);
-        
+          console.log(data.data.recipes);
+          console.log(apiData);
         }
       } catch (error) {
         console.error("Error fetching API:", error);
@@ -70,6 +69,10 @@ function Navbar() {
             </ul>
           </div>
         </div>
+      </div>
+      <div className="Containner">
+        {/* {console.log(apiData)}
+        <h1>{apiData.publisher}</h1> */}
       </div>
     </div>
   );
