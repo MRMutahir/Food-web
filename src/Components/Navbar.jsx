@@ -1,4 +1,6 @@
 import { useEffect, useState } from "react";
+
+
 function Navbar() {
   const [inputValue, setInputValue] = useState("");
   const [apiData, setApiData] = useState("...loading");
@@ -10,8 +12,13 @@ function Navbar() {
           `https://forkify-api.herokuapp.com/api/v2/recipes?search=${inputValue}`
         );
         const data = await response.json();
-
-        setApiData(data.data.recipes);
+        // setApiData(data.data.recipes);
+        if (data.data.recipes.length === 0) {
+          console.log("data nh milraha hen abhi ");
+        } else {
+          setApiData(data.data.recipes);
+        
+        }
       } catch (error) {
         console.error("Error fetching API:", error);
       }
@@ -21,13 +28,13 @@ function Navbar() {
       fetchAPI();
     }
   }, [inputValue]);
-  console.log(apiData);
+  // console.log(apiData);
   return (
     <div className="container hidden lg:block">
       {" "}
       <div className="navbar bg-base-100">
         <div className="flex-1">
-          <a className="btn btn-ghost normal-case text-xl">daisyUI</a>
+          <a className="btn btn-ghost normal-case text-xl">MR Food</a>
         </div>
         <div className="flex-none gap-2">
           <div className="form-control w-full">
