@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 function Navbar() {
   const [inputValue, setInputValue] = useState("");
-  const [apiData, setApiData] = useState("...loading");
+  let [apiData, setApiData] = useState("...loading");
 
   useEffect(() => {
     const fetchAPI = async () => {
@@ -9,15 +9,15 @@ function Navbar() {
         const response = await fetch(
           `https://forkify-api.herokuapp.com/api/v2/recipes?search=${inputValue}`
         );
-        const data = await response.json();
         // setApiData(data.data.recipes);
-        if (data.data.recipes.length === 0) {
-          console.log("data nh milraha hen abhi ");
-        } else {
-          setApiData(data.data.recipes);
-          console.log(data.data.recipes);
-          console.log(apiData);
-        }
+        const data = await response.json();
+        // if (data.data.recipes.length === 0)
+        // return console.log("data nh milraha hen abhi ");
+        console.log(data);
+
+        // setApiData(data.data.recipes);
+        // console.log(data.data.recipes);
+        // // console.log(apiData);
       } catch (error) {
         console.error("Error fetching API:", error);
       }
@@ -27,6 +27,7 @@ function Navbar() {
       fetchAPI();
     }
   }, [inputValue]);
+  // console.log(apiData);
   // console.log(apiData);
   return (
     <div className="container hidden lg:block">
@@ -70,10 +71,7 @@ function Navbar() {
           </div>
         </div>
       </div>
-      <div className="Containner">
-        {/* {console.log(apiData)}
-        <h1>{apiData.publisher}</h1> */}
-      </div>
+      <div className="Containner">{/* {console.log(typeof apiData)} */}</div>
     </div>
   );
 }
