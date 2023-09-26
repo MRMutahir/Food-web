@@ -1,7 +1,27 @@
-import React from "react";
+import { useEffect, useState } from "react";
+function Navbar() {
+  const [inputValue, setInputValue] = useState("");
+  const [apiData, setApiData] = useState("...loading");
 
-function Navbar({dataapi}) {
-  console.log(dataapi, "navbar s  data agaya hen");
+  useEffect(() => {
+    const fetchAPI = async () => {
+      try {
+        const response = await fetch(
+          `https://forkify-api.herokuapp.com/api/v2/recipes?search=${inputValue}`
+        );
+        const data = await response.json();
+
+        setApiData(data.data.recipes);
+      } catch (error) {
+        console.error("Error fetching API:", error);
+      }
+    };
+
+    if (inputValue !== "") {
+      fetchAPI();
+    }
+  }, [inputValue]);
+  console.log(apiData);
   return (
     <div className="container hidden lg:block">
       {" "}
@@ -15,6 +35,7 @@ function Navbar({dataapi}) {
               type="text"
               placeholder="Search"
               className="input input-bordered w-full md:w-full "
+              onChange={(e) => setInputValue(e.target.value)}
             />
           </div>
           <div className="dropdown dropdown-end">
