@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import Containner from "./Containner.jsx";
+import StoreIcon from "@mui/icons-material/Store";
 function Navbar() {
   const controller = new AbortController();
   const [inputValue, setInputValue] = useState("");
@@ -35,8 +36,30 @@ function Navbar() {
       <div className="container hidden lg:block  ">
         {" "}
         <div className="navbar bg-base-100">
-          <div className="flex-1">
-            <a className="btn btn-ghost normal-case text-xl">MR Food</a>
+          <div className="flex-1 ">
+            <a
+              className="btn btn-ghost normal-case text-xl"
+              style={{ position: "relative" }}
+            >
+              MR Food{" "}
+              <span
+                style={{
+                  height: "20px",
+                  width: "20px",
+                  borderRadius: "50%",
+                  background: "red",
+                  color: "white",
+                  position: "absolute",
+                  top: "0",
+                  right: "-30px",
+                  border: `2px solid white`,
+                  fontSize: "12px",
+                  textAlign:"center",
+                
+                }}
+              >1</span>
+            </a>
+            <StoreIcon />
           </div>
           <div className="flex-none gap-2">
             <div className="form-control w-full">
