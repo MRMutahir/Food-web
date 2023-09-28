@@ -4,6 +4,7 @@ import StoreIcon from "@mui/icons-material/Store";
 const Containner = ({ newArr }) => {
   const [singleArr, setsingleArr] = useState("");
   const [count, setcount] = useState(0);
+  const [alertUser,setalertUser] = useState(false)
 
   function addSingle(index, e) {
     console.log("SALAM");
@@ -12,6 +13,7 @@ const Containner = ({ newArr }) => {
       setcount(count + 1);
     }else{
       console.log(" you allready select this card");
+      setalertUser(true)
     }
   }
 console.log(singleArr);
