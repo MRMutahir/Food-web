@@ -1,26 +1,28 @@
 import React, { useState } from "react";
 import LoadingComponent from "./Loading";
 import StoreIcon from "@mui/icons-material/Store";
+import Start from "./Start";
+// import CustomModal from "./ModalBtn";
+import "./Containner.css";
+
 const Containner = ({ newArr }) => {
   const [singleArr, setsingleArr] = useState("");
   const [count, setcount] = useState(0);
-  const [alertUser,setalertUser] = useState(false)
+  const [alertUser, setalertUser] = useState(false);
 
   function addSingle(index, e) {
-    console.log("SALAM");
-    if(!singleArr.includes(index)){
+    if (!singleArr.includes(index)) {
       setsingleArr([...singleArr, index, e]);
       setcount(count + 1);
-    }else{
-      console.log(" you allready select this card");
-      setalertUser(true)
+    } else {
+      setalertUser(true);
+      alert(" this connent is allready select ");
     }
   }
-console.log(singleArr);
+  // console.log(singleArr);
   return (
     <>
-      {" "}
-      <span
+      <a
         style={{
           height: "50px",
           width: "50px",
@@ -39,10 +41,11 @@ console.log(singleArr);
           alignItems: "center",
           cursor: "pointer",
           position: "fixed",
+          // transition: "all",
         }}
       >
         {count} <StoreIcon />
-      </span>
+      </a>
       <div className="container main-container mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 mt-10 ">
         {newArr.length !== 0 ? (
           newArr.map((e, index) => (
@@ -70,34 +73,7 @@ console.log(singleArr);
                   >
                     Order Now
                   </button>
-                  <div className="rating">
-                    <input
-                      type="radio"
-                      name="rating-2"
-                      className="mask mask-star-2 bg-orange-400"
-                    />
-                    <input
-                      type="radio"
-                      name="rating-2"
-                      className="mask mask-star-2 bg-orange-400"
-                      checked
-                    />
-                    <input
-                      type="radio"
-                      name="rating-2"
-                      className="mask mask-star-2 bg-orange-400"
-                    />
-                    <input
-                      type="radio"
-                      name="rating-2"
-                      className="mask mask-star-2 bg-orange-400"
-                    />
-                    <input
-                      type="radio"
-                      name="rating-2"
-                      className="mask mask-star-2 bg-orange-400"
-                    />
-                  </div>
+                  <Start />
                 </div>
               </div>
             </div>
