@@ -6,27 +6,28 @@ import Star from "./Start";
 import "./Containner.css";
 
 const Containner = ({ newArr }) => {
-  // console.log(rating);
-  const [singleArr, setsingleArr] = useState("");
-  const [count, setcount] = useState(0);
-  const [alertUser, setalertUser] = useState(false);
+  const [singleArr, setSingleArr] = useState([]);
+  const [count, setCount] = useState(0);
+  const [alertUser, setAlertUser] = useState(false);
 
-  function addSingle(index, e) {
+  // Create an array to store ratings for each product
+  const [ratings, setRatings] = useState(newArr.map(() => 0));
+
+  function addSingle(index, e, productIndex) {
     if (!singleArr.includes(index)) {
-      setsingleArr([...singleArr, index, e]);
-      setcount(count + 1);
+      setSingleArr([...singleArr, index, e]);
+      setCount(count + 1);
+
+      // Update the rating for the clicked product
+      const newRatings = [...ratings];
+      newRatings[productIndex] = e.rating;
+      setRatings(newRatings);
     } else {
-      setalertUser(true);
-      alert(" this connent is allready select ");
+      setAlertUser(true);
+      alert("This content is already selected.");
     }
   }
-  // console.log(singleArr);
-  const [rating, setRating] = useState(0);
-  const handleRatingChange = (newRating) => {
-    setRating(newRating);
-  };
-
-  console.log(rating);
+console.log(singleArr);
   return (
     <>
       <Link to="/selectmenu">
@@ -55,7 +56,7 @@ const Containner = ({ newArr }) => {
           {count} <StoreIcon />
         </a>
       </Link>
-      <div className="container main-container mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 mt-10 ">
+      <div className="container main-container mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 mt-10">
         {newArr.length !== 0 ? (
           newArr.map((e, index) => (
             <div
@@ -71,37 +72,22 @@ const Containner = ({ newArr }) => {
               </figure>
               <div className="card-body">
                 <div className="rating">
-                  {/* Add your star rating logic here */}
+                  <Star
+                    selectedRating={ratings[index]} // Pass the rating for this product
+                    onRatingChange={(newRating) =>
+                      addSingle(index, e, index, newRating)
+                    }
+                  />
                 </div>
                 <p className="text-xl font-semibold">{e.title}</p>
                 <p className="text-gray-600">{e.publisher}</p>
                 <div className="card-actions mt-4 flex justify-around">
                   <button
                     className="btn btn-primary"
-                    onClick={() => addSingle(index, e)}
+                    onClick={() => addSingle(index, e, index)}
                   >
                     Order Now
                   </button>
-                  <div className="rating">
-                    {[1, 2, 3, 4, 5].map((value) => (
-                      <label
-                        key={value}
-                        className={`mask mask-star-2 ${
-                          value <= rating ? "filled" : ""
-                        }`}
-                        onClick={() => handleRatingChange(value)} // Update the rating on click
-                      >
-                        <input
-                          type="radio"
-                          name="rating"
-                          value={value}
-                          checked={value === rating} // Check the input when its value matches the current rating
-                          onChange={() => {}} // Make onChange a no-op to prevent radio button deselection
-                        />
-                      </label>
-                    ))}
-                  </div>
-                  <p>Selected rating: {rating}</p>
                 </div>
               </div>
             </div>
