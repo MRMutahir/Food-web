@@ -33,9 +33,9 @@ function Navbar() {
   return (
     <>
       {" "}
-      <div className="container hidden lg:block  ">
+      <div className="container hidden lg:block" style={{position:"fixed",top:'0',zIndex:'999'}}>
         {" "}
-        <div className="navbar bg-base-100">
+        <div className="navbar bg-base-100" >
           <div className="flex-1 ">
             <a
               className="btn btn-ghost normal-case text-xl"

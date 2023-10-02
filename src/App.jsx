@@ -1,16 +1,20 @@
 // import Containner from "./Components/Containner";
 import Main from "./Components/Main";
-import Footer from "./Components/Footer";
+import SelectMenu from "./Components/SelectMenu";
+import { Route, Routes } from "react-router-dom";
+
 function App() {
   return (
     <>
-      <div className="main-Wrapper" style={{ position: "relative" }}>
-        {" "}
-        <Main />
-        <Footer />
-      </div>
+
+
+      <Routes>
+        <Route path="/" Component={Main }></Route>
+        <Route path="/selectmenu" Component={SelectMenu}></Route>
+      </Routes>
     </>
   );
 }
+
 
 export default App;

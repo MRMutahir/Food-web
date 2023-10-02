@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import LoadingComponent from "./Loading";
 import StoreIcon from "@mui/icons-material/Store";
+import { Link } from "react-router-dom";
 import Start from "./Start";
-// import CustomModal from "./ModalBtn";
 import "./Containner.css";
 
 const Containner = ({ newArr }) => {
@@ -22,30 +22,32 @@ const Containner = ({ newArr }) => {
   // console.log(singleArr);
   return (
     <>
-      <a
-        style={{
-          height: "50px",
-          width: "50px",
-          left: "94%",
-          top: "80px",
-          marginTop: "50px",
-          borderRadius: "50%",
-          background: "red",
-          color: "white",
-          right: "-30px",
-          border: `2px solid white`,
-          fontSize: "12px",
-          textAlign: "center",
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-          cursor: "pointer",
-          position: "fixed",
-          // transition: "all",
-        }}
-      >
-        {count} <StoreIcon />
-      </a>
+      <Link to="/selectmenu">
+        <a
+          style={{
+            zIndex: '999',
+            height: "50px",
+            width: "50px",
+            left: "97%",
+            top: "80px",
+            marginTop: "50px",
+            borderRadius: "50%",
+            background: "red",
+            color: "white",
+            right: "-30px",
+            border: `2px solid white`,
+            fontSize: "12px",
+            textAlign: "center",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            cursor: "pointer",
+            position: "fixed",
+
+          }}
+        >
+          {count} <StoreIcon />
+        </a></Link>
       <div className="container main-container mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 mt-10 ">
         {newArr.length !== 0 ? (
           newArr.map((e, index) => (
