@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import Containner from "./Containner.jsx";
+// import Star from "./Start.jsx";
 
 function Navbar() {
   const controller = new AbortController();
@@ -33,18 +34,19 @@ function Navbar() {
   return (
     <>
       {" "}
-      <div className="container hidden lg:block" style={{position:"fixed",top:'0',zIndex:'999'}}>
+      <div
+        className="container hidden lg:block"
+        style={{ position: "fixed", top: "0", zIndex: "999" }}
+      >
         {" "}
-        <div className="navbar bg-base-100" >
+        <div className="navbar bg-base-100">
           <div className="flex-1 ">
             <a
               className="btn btn-ghost normal-case text-xl"
               style={{ position: "relative" }}
             >
               MR Food{" "}
-             
             </a>
-            
           </div>
           <div className="flex-none gap-2">
             <div className="form-control w-full">

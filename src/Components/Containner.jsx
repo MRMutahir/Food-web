@@ -2,10 +2,11 @@ import React, { useState } from "react";
 import LoadingComponent from "./Loading";
 import StoreIcon from "@mui/icons-material/Store";
 import { Link } from "react-router-dom";
-import Start from "./Start";
+import Star from "./Start";
 import "./Containner.css";
 
 const Containner = ({ newArr }) => {
+  // console.log(rating);
   const [singleArr, setsingleArr] = useState("");
   const [count, setcount] = useState(0);
   const [alertUser, setalertUser] = useState(false);
@@ -20,12 +21,18 @@ const Containner = ({ newArr }) => {
     }
   }
   // console.log(singleArr);
+  const [rating, setRating] = useState(0);
+  const handleRatingChange = (newRating) => {
+    setRating(newRating);
+  };
+
+  console.log(rating);
   return (
     <>
       <Link to="/selectmenu">
         <a
           style={{
-            zIndex: '999',
+            zIndex: "999",
             height: "50px",
             width: "50px",
             left: "97%",
@@ -43,11 +50,11 @@ const Containner = ({ newArr }) => {
             alignItems: "center",
             cursor: "pointer",
             position: "fixed",
-
           }}
         >
           {count} <StoreIcon />
-        </a></Link>
+        </a>
+      </Link>
       <div className="container main-container mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 mt-10 ">
         {newArr.length !== 0 ? (
           newArr.map((e, index) => (
@@ -75,7 +82,26 @@ const Containner = ({ newArr }) => {
                   >
                     Order Now
                   </button>
-                  <Start />
+                  <div className="rating">
+                    {[1, 2, 3, 4, 5].map((value) => (
+                      <label
+                        key={value}
+                        className={`mask mask-star-2 ${
+                          value <= rating ? "filled" : ""
+                        }`}
+                        onClick={() => handleRatingChange(value)} // Update the rating on click
+                      >
+                        <input
+                          type="radio"
+                          name="rating"
+                          value={value}
+                          checked={value === rating} // Check the input when its value matches the current rating
+                          onChange={() => {}} // Make onChange a no-op to prevent radio button deselection
+                        />
+                      </label>
+                    ))}
+                  </div>
+                  <p>Selected rating: {rating}</p>
                 </div>
               </div>
             </div>
