@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
-.rating * :hover {
+/* .rating * :hover {
+    background-color: orange;
+} */
+
+.filled * {
     background-color: orange;
 }

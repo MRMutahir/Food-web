@@ -1,10 +1,10 @@
 import React, { useState } from "react";
+import "../../src/index.css"
 
 function Start() {
-  const [rating, setRating] = useState(3); // Set an initial rating value
+  const [rating, setRating] = useState(0); // Initialize rating to 0 (no stars selected)
 
-  const handleRatingChange = (event) => {
-    const newRating = parseInt(event.target.value);
+  const handleRatingChange = (newRating) => {
     setRating(newRating);
   };
 
@@ -12,51 +12,21 @@ function Start() {
     <div>
       <h2>Star Rating Component</h2>
       <div className="rating">
-        <input
-          type="radio"
-          name="rating"
-          value="1"
-          className="mask mask-star-2 "
-          checked={rating === 1}
-          onChange={handleRatingChange}
-
-        />
-        <input
-          type="radio"
-          name="rating"
-          value="2"
-          className="mask mask-star-2 "
-          checked={rating === 2}
-          onChange={handleRatingChange}
-
-        />
-        <input
-          type="radio"
-          name="rating"
-          value="3"
-          className="mask mask-star-2 "
-          checked={rating === 3}
-          onChange={handleRatingChange}
-
-        />
-        <input
-          type="radio"
-          name="rating"
-          value="4"
-          className="mask mask-star-2 "
-          checked={rating === 4}
-          onChange={handleRatingChange}
-
-        />
-        <input
-          type="radio"
-          name="rating"
-          value="5"
-          className="mask mask-star-2"
-          checked={rating === 5}
-          onChange={handleRatingChange}
-
-        />
+        {[1, 2, 3, 4, 5].map((value) => (
+          <label
+            key={value}
+            className={`mask mask-star-2 ${value <= rating ? "filled" : ""}`}
+            onClick={() => handleRatingChange(value)} // Update the rating on click
+          >
+            <input
+              type="radio"
+              name="rating"
+              value={value}
+              checked={value === rating} // Check the input when its value matches the current rating
+              onChange={() => {}} // Make onChange a no-op to prevent radio button deselection
+            />
+          </label>
+        ))}
       </div>
       <p>Selected rating: {rating}</p>
     </div>
@@ -64,3 +34,4 @@ function Start() {
 }
 
 export default Start;
+
