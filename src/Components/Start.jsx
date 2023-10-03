@@ -1,10 +1,8 @@
-import { useState } from "react";
+import React from "react";
 
-function Star() {
-  const [selectedRating, setSelectedRating] = useState(0);
-
+function Star({ selectedRating, onRatingChange, index }) {
   const handleRatingChange = (newRating) => {
-    setSelectedRating(newRating);
+    onRatingChange(index, newRating);
   };
 
   return (
@@ -14,21 +12,21 @@ function Star() {
           <label
             key={value}
             className={`mask mask-star-2 ${value <= selectedRating ? "filled" : ""}`}
-            onClick={() => handleRatingChange(value)} // Update the selected rating on click
+            onClick={() => handleRatingChange(value)}
           >
             <input
               type="radio"
-              name="rating"
+              name={`rating-${index}`}
               value={value}
-              checked={value === selectedRating} // Check the input when its value matches the selected rating
-              onChange={() => {}} // Make onChange a no-op to prevent radio button deselection
+              checked={value === selectedRating}
+              onChange={() => {}}
             />
           </label>
         ))}
       </div>
-      <p>Selected rating: {selectedRating}</p>
     </>
   );
 }
 
 export default Star;
+
